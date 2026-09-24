@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Counter</title>
+</head>
+<body>
+  <div class="card">
+    <h1>My Counter</h1>
+    <div class="count" id="count">0</div>
+    <div class="buttons">
+      <button class="add" onclick="updateCount(1)">Add +</button>
+      <button class="remove" onclick="updateCount(-1)">Remove -</button>
+    </div>
+  </div>
+</body>
+</html>
