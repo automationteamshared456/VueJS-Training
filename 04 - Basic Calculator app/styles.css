@@ -1,0 +1,185 @@
+/* Automation team calculator
+   Palette: ink #16222E, panel #FFFFFF, backdrop #E6ECF0,
+   teal #0F7B83 (actions), amber #E8A33D (operations), slate #5B6B79 (secondary text) */
+
+:root {
+  --ink: #16222e;
+  --panel: #ffffff;
+  --backdrop: #e6ecf0;
+  --line: #cdd7de;
+  --slate: #5b6b79;
+  --teal: #0f7b83;
+  --teal-dark: #0a5c62;
+  --amber: #e8a33d;
+  --amber-dark: #c98623;
+  --radius: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Jost', system-ui, sans-serif;
+  font-size: 1.125rem;
+  color: var(--ink);
+  background: var(--backdrop);
+}
+
+/* ---------- Header ---------- */
+
+header {
+  padding: 2.5rem 1rem 1.5rem;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Calculator card ---------- */
+
+#app {
+  width: min(100% - 2rem, 26rem);
+  margin: 0 auto 3rem;
+  padding: 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(22, 34, 46, 0.1);
+}
+
+/* ---------- Inputs and result ---------- */
+
+.counter-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* number 1, number 2, results rows span the full width */
+.counter-container > div {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--backdrop);
+  border-radius: var(--radius);
+  color: var(--slate);
+}
+
+/* results readout: the one dark element on the page */
+.counter-container > div:nth-of-type(4) {
+  margin-top: 0.25rem;
+  padding: 1rem;
+  background: var(--ink);
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* number 1 and number 2 can be selected */
+.counter-container > div:nth-of-type(-n + 2) {
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+/* selected number row (written as div.active so it beats the row rule above) */
+.counter-container > div.active,
+.active {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+/* ready for when you add inputs or v-model fields */
+input {
+  width: 6rem;
+  padding: 0.4rem 0.6rem;
+  font: inherit;
+  font-weight: 700;
+  text-align: right;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+/* ---------- Buttons ---------- */
+
+button {
+  padding: 0.75rem 0.5rem;
+  font: inherit;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--teal);
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+button:hover {
+  background: var(--teal-dark);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* ---------- Operation keys ---------- */
+
+/* class name matches the HTML spelling ("contaimer") */
+.operation-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.operation-container button {
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  color: var(--ink);
+  background: var(--amber);
+}
+
+.operation-container button:hover {
+  background: var(--amber-dark);
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 400px) {
+  #app {
+    padding: 1rem;
+  }
+
+  .counter-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+}
