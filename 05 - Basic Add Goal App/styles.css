@@ -1,0 +1,156 @@
+:root {
+  --bg: #f5f6fa;
+  --card-bg: #ffffff;
+  --text: #1f2430;
+  --muted: #6b7280;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --border: #e5e7eb;
+  --danger: #ef4444;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #14151a;
+    --card-bg: #1e2028;
+    --text: #f0f1f5;
+    --muted: #9aa0ab;
+    --accent: #818cf8;
+    --accent-hover: #a5b4fc;
+    --border: #2e313c;
+    --danger: #f87171;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #14151a;
+  --card-bg: #1e2028;
+  --text: #f0f1f5;
+  --muted: #9aa0ab;
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --border: #2e313c;
+  --danger: #f87171;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.app {
+  width: 100%;
+  max-width: 480px;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+#goal-input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--text);
+  outline: none;
+}
+
+#goal-input:focus {
+  border-color: var(--accent);
+}
+
+#add-goal-btn {
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#add-goal-btn:hover {
+  background: var(--accent-hover);
+}
+
+#goal-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#goal-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  word-break: break-word;
+}
+
+#goal-list li.done span.goal-text {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.goal-text {
+  flex: 1;
+  cursor: pointer;
+}
+
+.delete-btn {
+  border: none;
+  background: transparent;
+  color: var(--danger);
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 6px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px 0;
+  font-size: 0.95rem;
+}
